@@ -39,7 +39,7 @@ app.use((req, res) => {
 //! Global error handler 
 app.use(errorHandler);
 
-// Starta server
+
 app.listen(PORT, () => {
     console.log(` Server is running on http://localhost:${PORT}`);
     console.log(`Swagger docs: http://localhost:${PORT}/api-docs`);

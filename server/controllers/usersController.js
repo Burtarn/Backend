@@ -56,3 +56,26 @@ export const login = async (req, res, next) => {
         next(new HttpError(500, "Kunde inte logga in"));
     }
 };
+
+    export const deleteUser = async (req, res, next) => {
+    const userId = parseInt(req.params.id);
+
+    if (isNaN(userId)) {
+        return next(new HttpError(400, 'Ogiltigt användar-ID'));
+    }
+
+    try {
+        const result = await pool.query(
+        'DELETE FROM users WHERE id = $1 RETURNING id, username',
+        [userId]
+        );
+
+        if (result.rowCount === 0) {
+        return next(new HttpError(404, 'Användaren kunde inte hittas'));
+        }
+
+        res.status(200).json({ message: 'Användare borttagen', user: result.rows[0] });
+    } catch (err) {
+        next(new HttpError(500, 'Kunde inte ta bort användare'));
+    }
+};

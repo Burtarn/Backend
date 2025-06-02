@@ -21,7 +21,57 @@ components:
       bearerFormat: JWT
 
   schemas:
-    # dina scheman...
+    AuthRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          example: testuser
+        password:
+          type: string
+          example: hemligt123
+
+    NoteInput:
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          type: string
+          example: Ny anteckning
+        content:
+          type: string
+          example: Detta är innehållet
+
+    NoteUpdate:
+      type: object
+      required:
+        - id
+        - title
+        - content
+      properties:
+        id:
+          type: string
+          example: "abc123"
+        title:
+          type: string
+          example: Uppdaterad titel
+        content:
+          type: string
+          example: Uppdaterat innehåll
+
+    NoteDelete:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          example: "abc123"
 
 paths:
   /user/signup:
@@ -63,6 +113,32 @@ paths:
           description: Ogiltig data
         '401':
           description: Fel användarnamn eller lösenord
+        '500':
+          description: Serverfel
+
+  /user/{id}:
+    delete:
+      tags:
+        - Auth
+      summary: Radera användare med ID
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID på användaren som ska raderas
+      responses:
+        '200':
+          description: Användare raderad
+        '400':
+          description: Ogiltigt ID
+        '401':
+          description: Ej auktoriserad
+        '404':
+          description: Användaren hittades inte
         '500':
           description: Serverfel
 
