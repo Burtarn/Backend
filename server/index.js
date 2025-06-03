@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import errorHandler from './middleware/errorHandler.js';
+import { httpLogger, logger } from './utils/Logger.js'; 
+
 
 import { swaggerUi, swaggerDocument } from './utils/swagger.js'; 
 
@@ -17,8 +19,12 @@ const PORT = process.env.PORT || 5000;
 
 //! Middleware
 app.use(cors());
-app.use(morgan('dev'));
 app.use(express.json());
+app.use(httpLogger);
+
+if (process.env.NODE_ENV !== 'production') {
+    app.use(morgan('dev'));
+}
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); 
 
