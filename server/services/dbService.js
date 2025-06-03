@@ -20,15 +20,6 @@
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         `);
-        await pool.query(`
-        CREATE TABLE IF NOT EXISTS user_profiles (
-            id SERIAL PRIMARY KEY,
-            email VARCHAR(100) NOT NULL UNIQUE,
-            full_name VARCHAR(100) NOT NULL,
-            phone_number VARCHAR(20),
-            user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
-        );
-        `);
 
         console.log("✅ Tables created successfully.");
     } catch (err) {
