@@ -9,10 +9,6 @@
     content: Joi.string().allow('', null).messages({
         'string.base': 'Innehåll måste vara en sträng',
     }),
-    userId: Joi.number().integer().required().messages({
-        'number.base': 'userId måste vara ett nummer',
-        'any.required': 'userId krävs',
-    }),
     });
 
     export const updateNoteSchema = Joi.object({

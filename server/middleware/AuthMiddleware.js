@@ -15,7 +15,8 @@
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded; 
+        console.log("Decoded JWT:", decoded);
+        req.user = { id: decoded.userId };
         next();
     } catch (error) {
         res.status(403).json({ message: 'Ogiltig eller utgången token' });

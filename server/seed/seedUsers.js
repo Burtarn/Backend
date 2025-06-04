@@ -2,11 +2,10 @@ import pool from "../config/postgres.js";
 
 export const seedUsers = async () => {
   try {
-    // Rensa befintliga data
-    await pool.query("DELETE FROM notes"); // måste rensas först pga foreign key
+
+    await pool.query("DELETE FROM notes"); 
     await pool.query("DELETE FROM users");
 
-    // Lägg till testanvändare
     const result = await pool.query(`
       INSERT INTO users (username, password)
       VALUES 
