@@ -7,7 +7,7 @@ export const generalLimiter = rateLimit({
 });
 
 export const loginLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 min
+  windowMs: 10 * 60 * 1000, 
     max: 5,
     message: 'För många inloggningsförsök, försök igen senare.',
 });
