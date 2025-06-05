@@ -1,4 +1,4 @@
-# 🌀 Swing Notes API
+# Swing Notes API
 
 Swing Notes API är ett säkert och funktionsrikt RESTful backend-API för att hantera personliga anteckningar. Användare kan registrera sig och logga in med JWT-autentisering, skapa och hantera egna anteckningar, och utföra sökningar. API:et är skyddat med rate limiting och brute-force skydd, och innehåller dokumentation via Swagger.
 
@@ -38,9 +38,11 @@ Swing Notes API är ett säkert och funktionsrikt RESTful backend-API för att h
    npm run dev
 
 ## 🔐 Autentisering
--- **Registrering: POST /auth/signup
--- **Inloggning: POST /auth/login
--- **JWT-token returneras vid inloggning och krävs som Authorization: Bearer <token> för skyddade routes.
+Registrering: POST /auth/signup
+
+Inloggning: POST /auth/login
+
+JWT-token returneras vid inloggning och krävs som Authorization: Bearer <token> för skyddade routes.
 
 ## 📘 API-dokumentation
 Swagger UI finns på:
@@ -61,13 +63,13 @@ http://localhost:5000/api-docs
 
 
 ## 🔐 Säkerhet
--- **✅ Rate limiter begränsar antalet förfrågningar per IP
+Rate limiter begränsar antalet förfrågningar per IP
 
--- **✅ Brute-force skydd vid inloggningsförsök
+Brute-force skydd vid inloggningsförsök
 
--- **✅ Endast autentiserade användare har tillgång till anteckningsroutes
+Endast autentiserade användare har tillgång till anteckningsroutes
 
--- **✅ Endast åtkomst till egna anteckningar
+Endast åtkomst till egna anteckningar
 
 ##📁 Projektstruktur
 
