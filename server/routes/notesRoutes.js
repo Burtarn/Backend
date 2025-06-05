@@ -24,9 +24,9 @@ router.use(authMiddleware);
 router.get('/', getAllNotes);
 router.post('/', validate(createNoteSchema), createNote);
 router.put(
-  '/:id',
-  validate(noteIdParamSchema, 'params'), 
-  validate(updateNoteSchema),           
+    '/:id',
+    validate(noteIdParamSchema, 'params'), 
+    validate(updateNoteSchema),           
 updateNote
 );
 router.delete('/:id', validate(noteIdParamSchema, 'params'), deleteNote);

@@ -8,7 +8,7 @@ import pool from "../config/postgres.js";
         await seedNotes(users);
         console.log("🌱 All seeds completed successfully.");
     } catch (err) {
-        console.error("❌ Seeding failed:", err.message);
+        console.error("Seeding failed:", err.message);
     } finally {
         await pool.end(); 
     }
