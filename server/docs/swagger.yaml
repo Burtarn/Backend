@@ -50,7 +50,7 @@ components:
           type: string
           example: Detta är innehållet
       description: |
-        Inga användar-ID:n behöver skickas. Användaren identifieras via JWT-token i "Authorization"-headern.
+        Användaren identifieras via JWT-token. ID skickas som URL-parameter.
 
 paths:
   /user/signup:
@@ -107,7 +107,7 @@ paths:
           name: id
           required: true
           schema:
-            type: string
+            type: integer
           description: ID på användaren som ska raderas
       responses:
         '200':
@@ -131,6 +131,7 @@ paths:
           description: Lista av anteckningar
         '401':
           description: Ej auktoriserad
+
     post:
       tags:
         - Notes
@@ -159,7 +160,7 @@ paths:
           name: id
           required: true
           schema:
-            type: string
+            type: integer
           description: ID för anteckningen som ska uppdateras
       requestBody:
         required: true
@@ -188,7 +189,7 @@ paths:
           name: id
           required: true
           schema:
-            type: string
+            type: integer
           description: ID för anteckningen som ska raderas
       responses:
         '200':
@@ -213,6 +214,7 @@ paths:
           required: true
           schema:
             type: string
+          description: Sökterm för titel
       responses:
         '200':
           description: Sökresultat
