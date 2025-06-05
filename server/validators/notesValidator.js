@@ -11,11 +11,7 @@
     }),
     });
 
-    export const updateNoteSchema = Joi.object({
-    id: Joi.number().integer().required().messages({
-        'number.base': 'ID måste vara ett nummer',
-        'any.required': 'ID krävs för uppdatering',
-    }),
+export const updateNoteSchema = Joi.object({
     title: Joi.string().min(1).required().messages({
         'string.base': 'Titel måste vara en sträng',
         'string.empty': 'Titel får inte vara tom',
@@ -24,8 +20,7 @@
     content: Joi.string().allow('', null).messages({
         'string.base': 'Innehåll måste vara en sträng',
     }),
-    });
-
+});
 
     export const deleteNoteSchema = Joi.object({
     id: Joi.number().integer().required().messages({

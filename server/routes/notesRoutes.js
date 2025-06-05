@@ -25,9 +25,9 @@ router.get('/', getAllNotes);
 router.post('/', validate(createNoteSchema), createNote);
 router.put(
   '/:id',
-  validate(noteIdParamSchema, 'params'), // validera URL-parametern
-  validate(updateNoteSchema),            // validera title/content i body
-  updateNote
+  validate(noteIdParamSchema, 'params'), 
+  validate(updateNoteSchema),           
+updateNote
 );
 router.delete('/:id', validate(noteIdParamSchema, 'params'), deleteNote);
 router.get('/search', validate(searchNoteSchema, 'query'), searchNotes);
