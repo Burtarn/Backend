@@ -73,19 +73,24 @@ Endast åtkomst till egna anteckningar
 
 ##📁 Projektstruktur
 
-swing-notes-api/
+backend/
 │
-├── controllers/
-├── middleware/
-├── models/
-├── routes/
-├── seed/
-├── swagger/
-├── .env
-├── app.js
+├── config/         
+├── controllers/    
+├── middleware/     
+├── models/         
+├── routes/         
+├── seed/          
+├── services/      
+├── utils/         
+├── validator/      
+├── logger/         
+├── swagger/        
+│
+├── .env            
+├── index.js         
 ├── package.json
 └── README.md
-
 
 
    
