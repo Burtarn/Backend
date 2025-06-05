@@ -42,3 +42,11 @@
         'any.required': 'Sökord krävs',
     }),
     });
+
+    export const noteIdParamSchema = Joi.object({
+    id: Joi.string().guid({ version: 'uuidv4' }).required()
+        .messages({
+            'string.guid': 'ID måste vara ett giltigt UUID',
+            'any.required': 'ID krävs i URL-parametern'
+        })
+});

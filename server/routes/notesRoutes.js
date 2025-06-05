@@ -13,7 +13,8 @@ import {
     createNoteSchema,
     updateNoteSchema,
     deleteNoteSchema,
-    searchNoteSchema
+    searchNoteSchema,
+    noteIdParamSchema
 } from '../validators/notesValidator.js';
 
 const router = Router();
@@ -22,8 +23,8 @@ router.use(authMiddleware);
 
 router.get('/', getAllNotes);
 router.post('/', validate(createNoteSchema), createNote);
-router.put('/', validate(updateNoteSchema), updateNote);
-router.delete('/', validate(deleteNoteSchema), deleteNote);
+router.put('/:id', validate(noteIdParamSchema, 'params'), validate(updateNoteSchema), updateNote);
+router.delete('/:id', validate(noteIdParamSchema, 'params'), deleteNote);
 router.get('/search', validate(searchNoteSchema, 'query'), searchNotes);
 
 export default router;

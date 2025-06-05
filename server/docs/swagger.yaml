@@ -7,7 +7,6 @@ info:
 servers:
   - url: http://localhost:5000/api
 
-# 🔐 Globalt säkerhetskrav – gäller alla endpoints om inte specifikt undantagna
 security:
   - bearerAuth: []
 
@@ -53,39 +52,13 @@ components:
       description: |
         Inga användar-ID:n behöver skickas. Användaren identifieras via JWT-token i "Authorization"-headern.
 
-    NoteUpdate:
-      type: object
-      required:
-        - id
-        - title
-        - content
-      properties:
-        id:
-          type: string
-          example: "abc123"
-        title:
-          type: string
-          example: Uppdaterad titel
-        content:
-          type: string
-          example: Uppdaterat innehåll
-
-    NoteDelete:
-      type: object
-      required:
-        - id
-      properties:
-        id:
-          type: string
-          example: "abc123"
-
 paths:
   /user/signup:
     post:
       tags:
         - Auth
       summary: Registrera en ny användare
-      security: []  # ❌ Undantagen från autentisering
+      security: []
       requestBody:
         required: true
         content:
@@ -107,7 +80,7 @@ paths:
       tags:
         - Auth
       summary: Logga in användare
-      security: []  # ❌ Undantagen från autentisering
+      security: []
       requestBody:
         required: true
         content:
@@ -175,16 +148,25 @@ paths:
           description: Ogiltig data
         '401':
           description: Ej auktoriserad
+
+  /notes/{id}:
     put:
       tags:
         - Notes
-      summary: Uppdatera en anteckning
+      summary: Uppdatera en anteckning med ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID för anteckningen som ska uppdateras
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NoteUpdate'
+              $ref: '#/components/schemas/NoteInput'
       responses:
         '200':
           description: Anteckning uppdaterad
@@ -192,23 +174,33 @@ paths:
           description: Ogiltig data
         '401':
           description: Ej auktoriserad
+        '403':
+          description: Inte behörig
+        '404':
+          description: Anteckningen hittades inte
+
     delete:
       tags:
         - Notes
-      summary: Radera en anteckning
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NoteDelete'
+      summary: Radera en anteckning med ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID för anteckningen som ska raderas
       responses:
         '200':
           description: Anteckning borttagen
         '400':
-          description: Ogiltig data
+          description: Ogiltigt ID
         '401':
           description: Ej auktoriserad
+        '403':
+          description: Inte behörig
+        '404':
+          description: Anteckningen hittades inte
 
   /notes/search:
     get:
