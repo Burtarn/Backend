@@ -4,11 +4,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import errorHandler from './middleware/errorHandler.js';
 import { httpLogger, logger } from './utils/Logger.js'; 
-
-
 import { swaggerUi, swaggerDocument } from './utils/swagger.js'; 
 
-//! Rutter
+//! Import-Rutter
 import userRoutes from './routes/UserRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
 

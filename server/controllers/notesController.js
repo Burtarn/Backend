@@ -41,7 +41,7 @@ export const updateNote = async (req, res, next) => {
     if (error) return next(new HttpError(400, error.details[0].message));
 
     const { title, content } = req.body;
-    const id = req.params.id; // Hämta ID från URL-parametern
+    const id = req.params.id; 
     const userId = req.user?.id;
 
     try {
