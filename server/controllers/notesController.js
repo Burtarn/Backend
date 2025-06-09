@@ -68,7 +68,7 @@ export const updateNote = async (req, res, next) => {
 };
 
 export const deleteNote = async (req, res, next) => {
-    const id = req.params.id; // istället för från body
+    const id = req.params.id;
     const userId = req.user?.id;
 
     try {
