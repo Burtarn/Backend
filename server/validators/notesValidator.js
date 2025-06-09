@@ -39,8 +39,8 @@ export const updateNoteSchema = Joi.object({
     });
 
 export const noteIdParamSchema = Joi.object({
-  id: Joi.number().integer().positive().required().messages({
+    id: Joi.number().integer().positive().required().messages({
     'number.base': 'ID måste vara ett heltal',
     'any.required': 'ID krävs för uppdatering',
-  }),
+    }),
 });
