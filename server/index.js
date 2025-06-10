@@ -5,12 +5,14 @@ import morgan from 'morgan';
 import errorHandler from './middleware/errorHandler.js';
 import { httpLogger, logger } from './utils/Logger.js'; 
 import { swaggerUi, swaggerDocument } from './utils/swagger.js'; 
+import { validateEnv } from './middleware/validateEnv.js';
 
 //! Import-Rutter
 import userRoutes from './routes/UserRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
 
 dotenv.config();
+validateEnv(['PORT', 'POSTGRES_URL', 'JWT_SECRET']);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
