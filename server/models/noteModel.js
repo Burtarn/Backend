@@ -18,14 +18,13 @@
     return result.rows[0];
     };
 
-    export const updateNote = async ({ id, title, content }) => {
+export const updateNote = async ({ id, title, content }) => {
     const result = await pool.query(
-        'UPDATE notes SET title = $1, content = $2 WHERE id = $3 RETURNING *',
+        'UPDATE notes SET title = $1, content = $2, updated_at = NOW() WHERE id = $3 RETURNING *',
         [title, content, id]
     );
     return result.rows[0];
-    };
-
+};
     export const deleteNote = async (id) => {
     const result = await pool.query('DELETE FROM notes WHERE id = $1 RETURNING *', [id]);
     return result.rows[0];
